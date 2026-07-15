@@ -16,7 +16,13 @@ int main() {
 	while((c = getchar()) != EOF) {
 		if(c == ' ' || c == '\n' || c == '\t') {
 			state = OUT;
+
 			++word_len[ch];
+
+			if(ch >= 10) {
+				++word_len[10];
+			}
+
 			ch = 0;
 		}
 
@@ -32,12 +38,23 @@ int main() {
 	printf("\n");
 
 	for(i = 1; i < 11; i++) {
-		printf("%d ", i);
+		
+		if(i == 10) {
+			printf("10+ ");
+		} 
+		
+		else { 
+			printf("%2d ", i);
+		}	
 		
 		for(j = 0; j < word_len[i]; j++) {
 			printf("🮑");
 		}
-
+		
+		if(word_len[i] != 0) {
+			printf(" (%d)", word_len[i]);
+		}
+		
 		printf("\n");
 	}
 
